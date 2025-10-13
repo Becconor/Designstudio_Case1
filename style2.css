@@ -150,7 +150,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 290px;
-    padding: 0 25px 50px;
+    padding: 0 10px 50px;
     gap: 50px;
 }
 
@@ -168,9 +168,6 @@ body {
     padding: 10px 20px;
     cursor: pointer;
 }
-
-
-
 
 
 .backgroundInfo1 {
@@ -202,6 +199,7 @@ body {
 .xCloseText {
     display: flex;
     flex-direction: column;
+
     text-align: center;
     gap: 50px;
     padding: 9.5px 25px 25px 25px;
@@ -216,4 +214,55 @@ body {
     position: absolute;
     top: 84px;
     bottom: 40px;
+}
+
+.homeButton {
+    font-family: "Kaushan";
+    font-size: 24px;
+    background-color: #FAF8EC;
+    text-decoration: underline;
+    border: 0;
+}
+
+.recipesList {
+    height: 100%;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+.recipeLable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    width: 277px;
+
+    flex: 0 0 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.recipeTxt {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.recipeTitle {
+    font-family: "Kaushan";
+    font-size: 16px;
+}
+
+.recipeIngredient {
+    font-size: 13px;
+}
+
+.eggPics {
+    width: 77px;
 }

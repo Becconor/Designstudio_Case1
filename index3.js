@@ -1,4 +1,3 @@
-// ——— BACKGROUND RUTNÄT ———
 let backgroundContainer = document.createElement("div");
 backgroundContainer.className = "backgroundContainer";
 document.body.append(backgroundContainer);
@@ -15,7 +14,6 @@ for (let i = 1; i <= 40; i++) {
     }
 }
 
-// ——— GLOBALA ELEMENT/REFERENSER (skapas/fylls i funktionerna) ———
 let logoImage = document.createElement("img");
 let button1Image = document.createElement("img");
 let button2Image = document.createElement("img");
@@ -43,27 +41,26 @@ let homeButton = document.createElement("button");
 let infoButton = document.createElement("button");
 let getStartedButton = document.createElement("button");
 
-// ——— TIMER ———
-const startingMinute = 1;
-let time = startingMinute * 60;
+let currentTab = "button1"; // "button1" (soft), "button2" (medium), "button3" (hard), "button4" (recipes)
+
+const TIMES = {
+    button1: 7 * 60,   // Soft
+    button2: 9 * 60,   // Medium
+    button3: 12 * 60   // Hard
+};
+
+let time = TIMES[currentTab];
 let timerId = null;
 let timerRunning = false;
 
-// ——— NAV-STATE (vilken flik i timer) ———
-let currentTab = "button1";
 
-// ——— SIDOR ———
 function firstPage() {
-    // Rensa ev. andra vyer
-    background3?.remove();
+    background3.remove();
 
-    // (Re)skapa bilder
     logoImage = document.createElement("img");
     button1Image = document.createElement("img");
     button2Image = document.createElement("img");
     button3Image = document.createElement("img");
-
-    // (Re)skapa containers
     background1 = document.createElement("div");
     background2 = document.createElement("div");
     buttons = document.createElement("div");
@@ -72,14 +69,12 @@ function firstPage() {
     button3 = document.createElement("div");
     homePage = document.createElement("div");
     infoDiv = document.createElement("div");
-    infoButton = document.createElement("button");
     getStartedDiv = document.createElement("div");
-
+    infoButton = document.createElement("button");
+    getStartedButton = document.createElement("button");
     button4 = document.createElement("p");
     bigText = document.createElement("p");
-    getStartedButton = document.createElement("button");
 
-    // Innehåll
     button4.textContent = "Recipes";
     txt = "Recipies";
     button4.innerHTML = `<span class="first-letter">${txt[0]}</span>${txt.slice(1)}`;
@@ -87,7 +82,7 @@ function firstPage() {
     bigText.textContent = "Soft Boiled";
     getStartedButton.textContent = "Boil Your Egg";
 
-    // Bilder
+
     logoImage.src = "Images/Logo.png";
     logoImage.alt = "LogoType";
     button1Image.src = "Images/Soft.png";
@@ -97,11 +92,10 @@ function firstPage() {
     button3Image.src = "Images/Hard.png";
     button3Image.alt = "Hard egg";
 
-    // Klasser (CSS styr!)
+
     background1.className = "background1";
     background2.className = "background2";
     logoImage.className = "logoImage";
-
     buttons.className = "buttons";
     button1.className = "buttonDown";
     button2.className = "button";
@@ -110,7 +104,6 @@ function firstPage() {
     button1Image.className = "buttonImage";
     button2Image.className = "buttonImage";
     button3Image.className = "buttonImage";
-
     homePage.className = "homePage";
     infoDiv.className = "infoDiv";
     infoButton.className = "infoButton";
@@ -118,15 +111,17 @@ function firstPage() {
     bigText.className = "bigText";
     getStartedButton.className = "getStartedButton";
 
-    // Event
+
     infoButton.onclick = () => getInfo("firstPage");
     button1.onclick = () => getTimers("button1");
     button2.onclick = () => getTimers("button2");
     button3.onclick = () => getTimers("button3");
-    button4.onclick = () => getTimers("button4");
+    button4.onclick = () => {
+        getTimers("button4");
+    };
     getStartedButton.onclick = () => getTimers("button1");
 
-    // Montera DOM
+
     document.body.append(background1);
     document.body.append(background2);
     document.body.append(logoImage);
@@ -143,20 +138,17 @@ function firstPage() {
 }
 
 function getTimers(value) {
-    // Stäng startsidan om den finns
-    background1?.remove();
-    background2?.remove();
-    logoImage?.remove();
+    background1.remove();
+    background2.remove();
+    logoImage.remove();
+    background3.remove();
 
-    // Spara aktiv flik om given
     if (value) currentTab = value;
 
-    // Skapa timersidan
     background3 = document.createElement("div");
     background3.className = "background3";
     document.body.append(background3);
 
-    // Top-knappar
     buttons = document.createElement("div");
     button1 = document.createElement("div");
     button2 = document.createElement("div");
@@ -164,13 +156,11 @@ function getTimers(value) {
     button4 = document.createElement("p");
 
     buttons.className = "buttons";
-    // Standardklasser, byts strax ut beroende på currentTab
     button1.className = "button";
     button2.className = "button";
     button3.className = "button";
     button4.className = "buttonP";
 
-    // Återanvänd bilderna (flyttas i DOM)
     button1Image.className = "buttonImage";
     button2Image.className = "buttonImage";
     button3Image.className = "buttonImage";
@@ -183,53 +173,166 @@ function getTimers(value) {
     button3.append(button3Image);
     buttons.append(button1, button2, button3, button4);
 
-    // Sätt aktiva klasser beroende på currentTab
-    button1.className = (currentTab === "button1") ? "buttonDown" : "button";
-    button2.className = (currentTab === "button2") ? "buttonDown" : "button";
-    button3.className = (currentTab === "button3") ? "buttonDown" : "button";
+    if (currentTab === "button1") {
+        button1.className = "buttonDown";
+    } else {
+        button1.className = "button";
+    }
+
+    if (currentTab === "button2") {
+        button2.className = "buttonDown";
+    } else {
+        button2.className = "button";
+    }
+
+    if (currentTab === "button3") {
+        button3.className = "buttonDown";
+    } else {
+        button3.className = "button";
+    }
+
     if (currentTab === "button4") {
-        button4.className = "buttonP"; // behåll din P-stil men utan underkant
+        button4.className = "buttonP";
         button4.style.borderBottom = "0";
     } else {
         button4.className = "buttonP";
         button4.style.borderBottom = "1px solid #000000";
     }
 
-    // Koppla klick (ersätter alltid tidigare handlers)
-    button1.onclick = () => getTimers("button1");
-    button2.onclick = () => getTimers("button2");
-    button3.onclick = () => getTimers("button3");
-    button4.onclick = () => getTimers("button4");
-
-    // Innehållsdel
     homePage = document.createElement("div");
     homePage.className = "homePage";
+    homePage.style.height = "660px";
     background3.append(homePage);
+
+    if (currentTab === "button4") {
+        homePage.style.display = "flex";
+        homePage.style.justifyContent = "center";
+        homePage.style.alignItems = "center";
+        homePage.style.padding = "25px 0 25px";
+
+        homePage.innerHTML = `
+            <div class="recipesList">
+                <div class="recipeLable">
+                    <img src="Images/Greek_inspired.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">GREEK INSPIRED</p>
+                        <p class="recipeIngredient">• Dill</p>
+                        <p class="recipeIngredient">• Feta</p>
+                        <p class="recipeIngredient">• Kalamata olives</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Everything_bagel.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">EVERYTHING BAGEL</p>
+                        <p class="recipeIngredient">• Cream cheese</p>
+                        <p class="recipeIngredient">• Smoked salmon</p>
+                        <p class="recipeIngredient">• Poppy seeds</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Pimiento_cheese.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">PIMIENTO CHEESE</p>
+                        <p class="recipeIngredient">• Pimiento peppers</p>
+                        <p class="recipeIngredient">• Cheddar</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/BLT.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">BLT</p>
+                        <p class="recipeIngredient">• Bacon</p>
+                        <p class="recipeIngredient">• Letters</p>
+                        <p class="recipeIngredient">• Tomato</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Buffalo.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">BUFFALO</p>
+                        <p class="recipeIngredient">• Blue cheese</p>
+                        <p class="recipeIngredient">• Hot sauce</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Guacamole.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">GUACAMOLE</p>
+                        <p class="recipeIngredient">• Lime juice</p>
+                        <p class="recipeIngredient">• Avocado</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Jalap_popper.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">JALAPEÑO POPPER</p>
+                        <p class="recipeIngredient">• Cheddar</p>
+                        <p class="recipeIngredient">• Jalapeño</p>
+                        <p class="recipeIngredient">• Cream cheese</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Dill_pickle.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">DILL PICKLE</p>
+                        <p class="recipeIngredient">• Dill pickles</p>
+                        <p class="recipeIngredient">• Old bay</p>
+                    </div>
+                </div>
+                <div class="recipeLable">
+                    <img src="Images/Bacon_jalap.png" class="eggPics"></img>
+                    <div class="recipeTxt">
+                        <p class="recipeTitle">BACON JALAPEÑO</p>
+                        <p class="recipeIngredient">• Bacon</p>
+                        <p class="recipeIngredient">• Jalapeño</p>
+                        <p class="recipeIngredient">• Scallions</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        button1.onclick = () => { currentTab = "button1"; getTimers("button1"); };
+        button2.onclick = () => { currentTab = "button2"; getTimers("button2"); };
+        button3.onclick = () => { currentTab = "button3"; getTimers("button3"); };
+        button4.onclick = () => { };
+        return;
+    }
 
     infoDiv = document.createElement("div");
     infoDiv.className = "infoDiv";
+
     infoButton = document.createElement("button");
     infoButton.className = "infoButton";
     infoButton.textContent = "i";
 
     getStartedDiv = document.createElement("div");
     getStartedDiv.className = "getStartedDiv";
+    getStartedDiv.style.height = "585px";
+    getStartedDiv.style.textAlign = "center";
+    getStartedDiv.style.justifyContent = "space-between";
 
     eggTextDiv = document.createElement("div");
     eggTextDiv.className = "eggTextDiv";
 
     bigText = document.createElement("p");
     bigText.className = "bigText";
+
     eggText = document.createElement("p");
     eggText.className = "eggText";
+    eggText.style.color = "#EE740A";
+    eggText.style.fontSize = "24px";
+
     timer = document.createElement("p");
     timer.className = "timer";
+    timer.style.fontSize = "80px";
+
     getStartedButton = document.createElement("button");
     getStartedButton.className = "getStartedButton";
+    getStartedButton.style.fontSize = "36px";
+
     homeButton = document.createElement("button");
     homeButton.className = "homeButton";
 
-    // Text per flik (du kan byta texter per tab här)
     if (currentTab === "button1") {
         bigText.textContent = "Soft Boiled";
     } else if (currentTab === "button2") {
@@ -239,39 +342,65 @@ function getTimers(value) {
     } else {
         bigText.textContent = "Recipes";
     }
-    eggText.textContent = (currentTab === "button4") ? "" : "Egg";
 
-    // START/RESTART-knappens text beroende på timerRunning
+    eggText.textContent = "Egg";
+
     getStartedButton.textContent = timerRunning ? "RESTART" : "START";
     homeButton.textContent = "Home";
 
-    // Events
-    infoButton.onclick = () => getInfo(currentTab);
+    infoButton.onclick = () => {
+        background3.remove();
+        getInfo(currentTab);
+    };
+
     homeButton.onclick = () => {
-        // Gå hem utan att påverka timer (du kan pausa här om du vill)
         background3.remove();
         firstPage();
     };
+
     getStartedButton.onclick = onStartRestartClick;
 
-    // Montera
     homePage.append(infoDiv, getStartedDiv);
     infoDiv.append(infoButton);
     eggTextDiv.append(bigText, eggText);
     getStartedDiv.append(eggTextDiv, timer, getStartedButton, homeButton);
+    background3.append(buttons, homePage);
 
-    // Visa timer-läget som det är nu
-    updateCountdownDisplay();
+    button1.onclick = () => {
+        currentTab = "button1";
+        background3.remove();
+        getTimers("button1");
+    };
+    button2.onclick = () => {
+        currentTab = "button2";
+        background3.remove();
+        getTimers("button2");
+    };
+    button3.onclick = () => {
+        currentTab = "button3";
+        background3.remove();
+        getTimers("button3");
+    };
+    button4.onclick = () => {
+        currentTab = "button4";
+        background3.remove();
+        getTimers("button4");
+    };
+
+    if (!timerRunning) {
+        time = TIMES[currentTab];
+        updateCountdownDisplay();
+    } else {
+        updateCountdownDisplay();
+    }
 }
 
 function getInfo(value) {
-    // Stäng aktuell sida
-    background1?.remove();
-    background2?.remove();
-    logoImage?.remove();
-    background3?.remove();
+    background1.remove();
+    background2.remove();
+    logoImage.remove();
+    background3.remove();
 
-    // Skapa overlay
     const backgroundInfo1 = document.createElement("div");
     const xClose = document.createElement("div");
     const xCloseButton = document.createElement("button");
@@ -302,7 +431,6 @@ function getInfo(value) {
     backgroundInfo1.append(xClose, xCloseText);
     xClose.append(xCloseButton);
 
-    // Stäng tillbaka
     xCloseButton.onclick = () => {
         backgroundInfo1.remove();
         if (value === "firstPage") {
@@ -313,54 +441,58 @@ function getInfo(value) {
     };
 }
 
-// ——— TIMER-LOGIK ———
-function onStartRestartClick() {
-    if (getStartedButton.textContent === "START") {
-        if (!timerRunning) {
-            timerRunning = true;
-            getStartedButton.textContent = "RESTART";
-            if (timerId === null) {
-                timerId = setInterval(updateCountdown, 1000);
-            }
-        }
-    } else {
-        // RESTART: stoppa och nollställ, men starta inte
-        clearInterval(timerId);
-        timerId = null;
-        timerRunning = false;
-        time = startingMinute * 60;
-        updateCountdownDisplay();
-        getStartedButton.textContent = "START";
-    }
-}
-
 function updateCountdownDisplay() {
+    if (!timer) return;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    if (timer) {
-        timer.textContent = `${minutes}:${seconds < 1 ? "0" + seconds : seconds}`;
-    }
+    timer.textContent = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
 }
 
-function updateCountdown() {
-    if (!timerRunning) return;
+function startTimer() {
+    time = TIMES[currentTab];
+    updateCountdownDisplay();
 
-    if (time <= 0) {
-        clearInterval(timerId);
-        timerId = null;
-        timerRunning = false;
+    timerRunning = true;
+    getStartedButton.textContent = "RESTART";
 
-        if (timer) {
+    if (timerId !== null) clearInterval(timerId);
+    timerId = setInterval(() => {
+        if (time <= 0) {
+            clearInterval(timerId);
+            timerId = null;
+            timerRunning = false;
             timer.textContent = "EAT IT!";
             timer.style.textAlign = "center";
             timer.style.color = "#EE740A";
+            getStartedButton.textContent = "START";
+            return;
         }
-        return;
-    }
-
-    time--;
-    updateCountdownDisplay();
+        time--;
+        updateCountdownDisplay();
+    }, 1000);
 }
 
-// ——— STARTA APPEN ———
+function resetTimer() {
+    if (timerId !== null) clearInterval(timerId);
+    timerId = null;
+    timerRunning = false;
+
+    time = TIMES[currentTab];
+    updateCountdownDisplay();
+
+    getStartedButton.textContent = "START";
+    if (timer) {
+        timer.style.textAlign = "";
+        timer.style.color = "";
+    }
+}
+
+function onStartRestartClick() {
+    if (getStartedButton.textContent === "START") {
+        startTimer();
+    } else {
+        resetTimer(); // RESTART = stoppa + nollställ
+    }
+}
+
 firstPage();

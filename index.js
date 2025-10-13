@@ -1,4 +1,4 @@
-// Rutnät bakgrund
+
 let backgroundContainer = document.createElement("div");
 backgroundContainer.className = "backgroundContainer";
 document.body.append(backgroundContainer);
@@ -437,7 +437,7 @@ function pageOne() {
         eggType.append(homeButton);
 
         homeButton.addEventListener('click', () => {
-            document.querySelector('.firstBackground')?.remove();
+            document.querySelector('.firstBackground').remove();
             pageOne();
         });
     }
