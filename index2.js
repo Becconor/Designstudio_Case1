@@ -30,6 +30,10 @@ let background2 = document.createElement("div");
 
 
 function firstPage() {
+    background1 = document.createElement("div");
+    logoImage = document.createElement("img");
+    background2 = document.createElement("div");
+
     background1.style.backgroundColor = "#FAF8EC";
     background1.style.width = "390px";
     background1.style.height = "764px";
