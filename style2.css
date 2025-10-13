@@ -1,0 +1,219 @@
+@font-face {
+    font-family: "Alexandria";
+    src: url("Fonts/Alexandria/Alexandria/Alexandria-VariableFont_wght.ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Kaushan";
+    src: url("Fonts/Kaushan_Script/KaushanScript-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFFFFF;
+
+    font-family: "Alexandria";
+}
+
+.first-letter {
+    font-family: "Alexandria";
+}
+
+.backgroundContainer {
+    width: 390px;
+    height: 844px;
+    display: grid;
+    grid-template-columns: repeat(19, 20.53px);
+    grid-template-rows: repeat(40, 21.1px);
+}
+
+.background1 {
+    background-color: #FAF8EC;
+    width: 390px;
+    height: 764px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+}
+
+.logoImage {
+    width: 362px;
+    position: absolute;
+    top: 64px;
+}
+
+.background2 {
+    background-color: #FAF8EC;
+    width: 310px;
+    height: 424px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 337px;
+    bottom: 80px;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+}
+
+.buttonDown {
+    width: 77.5px;
+    height: 60px;
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button {
+    width: 77.5px;
+    height: 60px;
+    border: 1px solid #000000;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttonP {
+    color: #EE740A;
+    font-family: Kaushan;
+    font-size: 16px;
+    width: 77.5px;
+    height: 60px;
+    border: 1px solid #000000;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttonImage {
+    width: 60px;
+}
+
+.homePage {
+    height: 364px;
+    width: 100%;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.infoDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding: 25px 25px;
+}
+
+.infoButton {
+    border: 2px solid #000000;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: #FAF8EC;
+    cursor: pointer;
+}
+
+.getStartedDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 290px;
+    padding: 0 25px 50px;
+    gap: 50px;
+}
+
+.bigText {
+    font-family: Kaushan;
+    font-size: 48px;
+}
+
+.getStartedButton {
+    font-size: 36px;
+    background-color: #000000;
+    color: #EE740A;
+    border: 0;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+
+
+.backgroundInfo1 {
+    background-color: #FAF8EC;
+    width: 310px;
+    height: 676px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    position: absolute;
+    top: 84px;
+    bottom: 84px;
+}
+
+.xClose {
+    width: 100%;
+    padding: 15.5px 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.xCloseButton {
+    border-radius: 50%;
+    border: 0;
+    background-color: #FAF8EC;
+    transform: rotate(45deg);
+    font-size: 36px;
+}
+
+.xCloseText {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+    padding: 9.5px 25px 25px 25px;
+    height: 602px;
+}
+
+.background3 {
+    background-color: #FAF8EC;
+    width: 310px;
+    height: 720px;
+    border-radius: 20px 20px 0 0;
+    position: absolute;
+    top: 84px;
+    bottom: 40px;
+}
