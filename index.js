@@ -164,17 +164,33 @@ function getInfo(value) {
 
     xCloseButton.textContent = "+";
     xCloseText.innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:20px;margin-top:50px;">
-      <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">How do you cook an egg?</p>
-      <p style="font-size: 13px;">Put water in a pot so that the egg is just covered with water. Let the water boil BEFORE putting the eggs in for best effect.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">How do you cook an egg?</p>
+        <p style="font-size: 13px;">
+            Put water in a pot so the egg is covered with water. 
+            Let the water boil BEFORE putting in the eggs.
+            This to get a more evenly cooked egg with fewer brakages. 
+            Startar man i kokande vatten blir vitan snabbt fast och hindrar gulan från att flyta ut.
+        </p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:20px;">
-      <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">How do you cook an egg?</p>
-      <p style="font-size: 13px;">Put water in a pot so that the egg is just covered with water. Let the water boil BEFORE putting the eggs in for best effect.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">The best way to peal an egg?</p>
+        <p style="font-size: 13px;">
+            Put the eggs in cold water and let them cool for 5 to 10 minutes. 
+            Roll the egg against a flat surface to break the eggshell all around. 
+            Peal from the broud end of the egg where the air bubble is.
+            Peal under cold running water if the eggshell is stuck.
+        </p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:20px;">
-      <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">How do you cook an egg?</p>
-      <p style="font-size: 13px;">Put water in a pot so that the egg is just covered with water. Let the water boil BEFORE putting the eggs in for best effect.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">Three important facts to think about?</p>
+        <p style="font-size: 13px;">
+            Cool the eggs immediately in cold water for minimum 5 minutes.
+            Avoid letting the eggs law for to long in the varm water since the heat keeps the egg cooking and can give that green color around the egg yolk.
+            Store the cooked eggs in the fridge for up to a week, but without the eggshell on keep them for no longer than 2 to 3 days.
+        </p>
     </div>
   `;
 
