@@ -41,18 +41,22 @@ let homeButton = document.createElement("button");
 let infoButton = document.createElement("button");
 let getStartedButton = document.createElement("button");
 
-let currentTab = "button1"; // "button1" (soft), "button2" (medium), "button3" (hard), "button4" (recipes)
+// --- MULTI-TIMER STATE (en per flik) ---
+let currentTab = "button1"; // button1=soft, button2=medium, button3=hard, button4=recipes
 
-const TIMES = {
-    button1: 7 * 60,   // Soft
-    button2: 9 * 60,   // Medium
-    button3: 12 * 60   // Hard
+const DURATIONS = {
+    button1: 0.1 * 60,   // Soft (test: 6 sek)
+    button2: 0.4 * 60,     // Medium
+    button3: 0.9 * 60     // Hard
 };
 
-let time = TIMES[currentTab];
-let timerId = null;
-let timerRunning = false;
-
+// varje flik får egen tid, running-flagga och interval-id
+const STATE = {
+    button1: { time: DURATIONS.button1, running: false, id: null },
+    button2: { time: DURATIONS.button2, running: false, id: null },
+    button3: { time: DURATIONS.button3, running: false, id: null }
+};
+// ----------------------------------------
 
 function firstPage() {
     background3.remove();
@@ -82,7 +86,6 @@ function firstPage() {
     bigText.textContent = "Soft Boiled";
     getStartedButton.textContent = "Boil Your Egg";
 
-
     logoImage.src = "Images/Logo.png";
     logoImage.alt = "LogoType";
     button1Image.src = "Images/Soft.png";
@@ -91,7 +94,6 @@ function firstPage() {
     button2Image.alt = "Medium egg";
     button3Image.src = "Images/Hard.png";
     button3Image.alt = "Hard egg";
-
 
     background1.className = "background1";
     background2.className = "background2";
@@ -111,16 +113,12 @@ function firstPage() {
     bigText.className = "bigText";
     getStartedButton.className = "getStartedButton";
 
-
     infoButton.onclick = () => getInfo("firstPage");
     button1.onclick = () => getTimers("button1");
     button2.onclick = () => getTimers("button2");
     button3.onclick = () => getTimers("button3");
-    button4.onclick = () => {
-        getTimers("button4");
-    };
+    button4.onclick = () => { getTimers("button4"); };
     getStartedButton.onclick = () => getTimers("button1");
-
 
     document.body.append(background1);
     document.body.append(background2);
@@ -173,31 +171,11 @@ function getTimers(value) {
     button3.append(button3Image);
     buttons.append(button1, button2, button3, button4);
 
-    if (currentTab === "button1") {
-        button1.className = "buttonDown";
-    } else {
-        button1.className = "button";
-    }
-
-    if (currentTab === "button2") {
-        button2.className = "buttonDown";
-    } else {
-        button2.className = "button";
-    }
-
-    if (currentTab === "button3") {
-        button3.className = "buttonDown";
-    } else {
-        button3.className = "button";
-    }
-
-    if (currentTab === "button4") {
-        button4.className = "buttonP";
-        button4.style.borderBottom = "0";
-    } else {
-        button4.className = "buttonP";
-        button4.style.borderBottom = "1px solid #000000";
-    }
+    button1.className = (currentTab === "button1") ? "buttonDown" : "button";
+    button2.className = (currentTab === "button2") ? "buttonDown" : "button";
+    button3.className = (currentTab === "button3") ? "buttonDown" : "button";
+    button4.className = "buttonP";
+    button4.style.borderBottom = (currentTab === "button4") ? "0" : "1px solid #000000";
 
     homePage = document.createElement("div");
     homePage.className = "homePage";
@@ -298,6 +276,7 @@ function getTimers(value) {
         return;
     }
 
+    // ----- Timer-vy -----
     infoDiv = document.createElement("div");
     infoDiv.className = "infoDiv";
 
@@ -342,10 +321,10 @@ function getTimers(value) {
     } else {
         bigText.textContent = "Recipes";
     }
-
     eggText.textContent = "Egg";
 
-    getStartedButton.textContent = timerRunning ? "RESTART" : "START";
+    // START/RESTART-etikett beror på aktuell fliks state
+    getStartedButton.textContent = STATE[currentTab].running ? "RESTART" : "START";
     homeButton.textContent = "Home";
 
     infoButton.onclick = () => {
@@ -358,6 +337,7 @@ function getTimers(value) {
         firstPage();
     };
 
+    // Viktigt: start/reset ska bara påverka AKTUELL flik
     getStartedButton.onclick = onStartRestartClick;
 
     homePage.append(infoDiv, getStartedDiv);
@@ -366,33 +346,14 @@ function getTimers(value) {
     getStartedDiv.append(eggTextDiv, timer, getStartedButton, homeButton);
     background3.append(buttons, homePage);
 
-    button1.onclick = () => {
-        currentTab = "button1";
-        background3.remove();
-        getTimers("button1");
-    };
-    button2.onclick = () => {
-        currentTab = "button2";
-        background3.remove();
-        getTimers("button2");
-    };
-    button3.onclick = () => {
-        currentTab = "button3";
-        background3.remove();
-        getTimers("button3");
-    };
-    button4.onclick = () => {
-        currentTab = "button4";
-        background3.remove();
-        getTimers("button4");
-    };
+    // flikknappar
+    button1.onclick = () => { currentTab = "button1"; background3.remove(); getTimers("button1"); };
+    button2.onclick = () => { currentTab = "button2"; background3.remove(); getTimers("button2"); };
+    button3.onclick = () => { currentTab = "button3"; background3.remove(); getTimers("button3"); };
+    button4.onclick = () => { currentTab = "button4"; background3.remove(); getTimers("button4"); };
 
-    if (!timerRunning) {
-        time = TIMES[currentTab];
-        updateCountdownDisplay();
-    } else {
-        updateCountdownDisplay();
-    }
+    // visa den flikens kvarvarande tid (utan att störa andra timers)
+    updateCountdownDisplay(currentTab);
 }
 
 function getInfo(value) {
@@ -441,58 +402,85 @@ function getInfo(value) {
     };
 }
 
-function updateCountdownDisplay() {
-    if (!timer) return;
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    timer.textContent = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+// ---------- TIMER-HJÄLPSFUNKTIONER (per flik) ----------
+function formatMMSS(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${m}:${s < 10 ? "0" + s : s}`;
 }
 
-function startTimer() {
-    time = TIMES[currentTab];
-    updateCountdownDisplay();
+function updateCountdownDisplay(tab = currentTab) {
+    if (!timer) return;
+    const { time } = STATE[tab];
+    timer.textContent = formatMMSS(time);
+}
 
-    timerRunning = true;
-    getStartedButton.textContent = "RESTART";
+function startTimer(tab = currentTab) {
+    const st = STATE[tab];
 
-    if (timerId !== null) clearInterval(timerId);
-    timerId = setInterval(() => {
-        if (time <= 0) {
-            clearInterval(timerId);
-            timerId = null;
-            timerRunning = false;
-            timer.textContent = "EAT IT!";
-            timer.style.textAlign = "center";
-            timer.style.color = "#EE740A";
-            getStartedButton.textContent = "START";
-            return;
+    // om redan igång, gör inget
+    if (st.running) return;
+
+    // om tiden är 0 (uppäten), nollställ till originaltid för en ny start
+    if (st.time <= 0) st.time = DURATIONS[tab];
+
+    st.running = true;
+    if (tab === currentTab) {
+        getStartedButton.textContent = "RESTART";
+        timer.style.textAlign = "";
+        timer.style.color = "";
+        updateCountdownDisplay(tab);
+    }
+
+    // egen interval för denna flik
+    if (st.id !== null) clearInterval(st.id);
+    st.id = setInterval(() => {
+        st.time--;
+        // uppdatera bara visningen om man står på denna flik
+        if (tab === currentTab) updateCountdownDisplay(tab);
+
+        if (st.time <= 0) {
+            clearInterval(st.id);
+            st.id = null;
+            st.running = false;
+            st.time = 0;
+
+            // om användaren tittar på denna flik: visa "EAT IT!"
+            if (tab === currentTab && timer) {
+                timer.textContent = "EAT IT!";
+                timer.style.textAlign = "center";
+                timer.style.color = "#EE740A";
+                getStartedButton.textContent = "START";
+            }
         }
-        time--;
-        updateCountdownDisplay();
     }, 1000);
 }
 
-function resetTimer() {
-    if (timerId !== null) clearInterval(timerId);
-    timerId = null;
-    timerRunning = false;
+function resetTimer(tab = currentTab) {
+    const st = STATE[tab];
+    if (st.id !== null) clearInterval(st.id);
+    st.id = null;
+    st.running = false;
+    st.time = DURATIONS[tab];
 
-    time = TIMES[currentTab];
-    updateCountdownDisplay();
-
-    getStartedButton.textContent = "START";
-    if (timer) {
-        timer.style.textAlign = "";
-        timer.style.color = "";
+    if (tab === currentTab) {
+        updateCountdownDisplay(tab);
+        getStartedButton.textContent = "START";
+        if (timer) {
+            timer.style.textAlign = "";
+            timer.style.color = "";
+        }
     }
 }
 
 function onStartRestartClick() {
-    if (getStartedButton.textContent === "START") {
-        startTimer();
+    const st = STATE[currentTab];
+    if (!st.running) {
+        startTimer(currentTab);  // starta bara AKTUELL fliks timer
     } else {
-        resetTimer(); // RESTART = stoppa + nollställ
+        resetTimer(currentTab);  // RESTART = stoppa + nollställ bara denna flik
     }
 }
+// -------------------------------------------------------
 
 firstPage();
