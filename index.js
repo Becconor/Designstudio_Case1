@@ -185,7 +185,7 @@ function getInfo(value) {
     </div>
 
     <div style="display:flex;flex-direction:column;gap:10px;">
-        <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">Three important facts to think about?</p>
+        <p style="font-family: Kaushan; font-size: 16px; color: #EE740A;">Important facts to think about?</p>
         <p style="font-size: 13px;">
             Cool the eggs immediately in cold water for minimum 5 minutes.
             Avoid letting the eggs law for to long in the varm water since the heat keeps the egg cooking and can give that green color around the egg yolk.
