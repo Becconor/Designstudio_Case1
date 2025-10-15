@@ -47,9 +47,9 @@ let timeText = document.createElement("p");
 let homeButton = document.createElement("button");
 let currentButton = "button1";
 const timeDuration = {
-    button1: 0.1 * 60,
-    button2: 9 * 60,
-    button3: 12 * 60
+    button1: 0.1 * 60,      // 4-5 minuter
+    button2: 9 * 60,        // 6-7 minuter
+    button3: 12 * 60        // 10-11 minuter
 };
 const timeState = {
     button1: { time: timeDuration.button1, running: false, id: null },
@@ -170,7 +170,6 @@ function getInfo(value) {
             Put water in a pot so the egg is covered with water. 
             Let the water boil BEFORE putting in the eggs.
             This to get a more evenly cooked egg with fewer brakages. 
-            Startar man i kokande vatten blir vitan snabbt fast och hindrar gulan från att flyta ut.
         </p>
     </div>
 
