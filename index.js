@@ -607,12 +607,12 @@ function recipesPage() {
     backgroundWidth = document.createElement("div");
     backgroundWidth.className = "backgroundWidth";
     backgroundWidth.style.width = "310px";
-    backgroundWidth.style.height = "720px";
+    backgroundWidth.style.height = "760px";
     backgroundWidth.style.top = "84px";
     backgroundWidth.style.borderRadius = "20px 20px 0 0";
 
     displayDiv = document.createElement("div");
-    displayDiv.style.height = "720px";
+    displayDiv.style.height = "760px";
     displayDiv.style.top = "0";
     displayDiv.style.bottom = "0";
 
@@ -628,7 +628,7 @@ function recipesPage() {
 
     typeDisplay = document.createElement("div");
     typeDisplay.className = "typeDisplay";
-    typeDisplay.style.height = "660px";
+    typeDisplay.style.height = "700px";
 
     buttonDisplay.className = "buttonDisplay";
     buttonSoft.className = "buttons";
@@ -667,77 +667,95 @@ function recipesPage() {
                 <img src="Images/Greek_inspired.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">GREEK INSPIRED</p>
-                    <p class="recipeIngredient">• Dill</p>
-                    <p class="recipeIngredient">• Feta</p>
-                    <p class="recipeIngredient">• Kalamata olives</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Kalamata olives</p>
+                        <p class="recipeIngredient">Feta</p>
+                        <p class="recipeIngredient">Dill</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Everything_bagel.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">EVERYTHING BAGEL</p>
-                    <p class="recipeIngredient">• Cream cheese</p>
-                    <p class="recipeIngredient">• Smoked salmon</p>
-                    <p class="recipeIngredient">• Poppy seeds</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Smoked salmon</p>
+                        <p class="recipeIngredient">Cream cheese</p>
+                        <p class="recipeIngredient">Poppy seeds</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Pimiento_cheese.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">PIMIENTO CHEESE</p>
-                    <p class="recipeIngredient">• Pimiento peppers</p>
-                    <p class="recipeIngredient">• Cheddar</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Pimiento peppers</p>
+                        <p class="recipeIngredient">Cheddar</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/BLT.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">BLT</p>
-                    <p class="recipeIngredient">• Bacon</p>
-                    <p class="recipeIngredient">• Letters</p>
-                    <p class="recipeIngredient">• Tomato</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Letters</p>
+                        <p class="recipeIngredient">Tomato</p>
+                        <p class="recipeIngredient">Bacon</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Buffalo.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">BUFFALO</p>
-                    <p class="recipeIngredient">• Blue cheese</p>
-                    <p class="recipeIngredient">• Hot sauce</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Blue cheese</p>
+                        <p class="recipeIngredient">Hot sauce</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Guacamole.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">GUACAMOLE</p>
-                    <p class="recipeIngredient">• Lime juice</p>
-                    <p class="recipeIngredient">• Avocado</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Lime juice</p>
+                        <p class="recipeIngredient">Avocado</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Jalap_popper.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">JALAPEÑO POPPER</p>
-                    <p class="recipeIngredient">• Cheddar</p>
-                    <p class="recipeIngredient">• Jalapeño</p>
-                    <p class="recipeIngredient">• Cream cheese</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Cream cheese</p>
+                        <p class="recipeIngredient">Jalapeño</p>
+                        <p class="recipeIngredient">Cheddar</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Dill_pickle.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">DILL PICKLE</p>
-                    <p class="recipeIngredient">• Dill pickles</p>
-                    <p class="recipeIngredient">• Old bay</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Dill pickles</p>
+                        <p class="recipeIngredient">Old bay</p>
+                    </div>
                 </div>
             </div>
             <div class="recipeLable">
                 <img src="Images/Bacon_jalap.png" class="eggPics"></img>
                 <div class="recipeTxt">
                     <p class="recipeTitle">BACON JALAPEÑO</p>
-                    <p class="recipeIngredient">• Bacon</p>
-                    <p class="recipeIngredient">• Jalapeño</p>
-                    <p class="recipeIngredient">• Scallions</p>
+                    <div class="recipeTxtIngDiv">
+                        <p class="recipeIngredient">Scallions</p>
+                        <p class="recipeIngredient">Jalapeño</p>
+                        <p class="recipeIngredient">Bacon</p>
+                    </div>
                 </div>
             </div>
         </div>
