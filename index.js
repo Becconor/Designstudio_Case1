@@ -47,9 +47,9 @@ let timeText = document.createElement("p");
 let homeButton = document.createElement("button");
 let currentButton = "button1";
 const timeDuration = {
-    button1: 0.1 * 60,      // 4-5 minuter
-    button2: 9 * 60,        // 6-7 minuter
-    button3: 12 * 60        // 10-11 minuter
+    button1: 4.5 * 60,
+    button2: 6.5 * 60,
+    button3: 10 * 60
 };
 const timeState = {
     button1: { time: timeDuration.button1, running: false, id: null },
